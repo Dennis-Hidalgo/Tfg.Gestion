@@ -1,0 +1,46 @@
+﻿@page
+@using Tfg.Gestion.Localization
+@using Tfg.Gestion.Web.Pages.Products
+@using Microsoft.Extensions.Localization
+@model IndexModel
+@inject IStringLocalizer<GestionResource> L
+
+@section styles
+{
+    <link rel="stylesheet" href="/Pages/Products/Styles.css" />
+}
+
+@section scripts
+{
+    <abp-script src="/Pages/Products/Index.js" />
+}
+
+<abp-card>
+    <abp-card-header>
+        <abp-row>
+            <abp-column size-md="_6">
+                <abp-card-title>@L["Products"]</abp-card-title>
+            </abp-column>
+            <abp-column size-md="_6" class="text-end">
+                <abp-button id="NewProductButton"
+                            text="@L["NewProduct"].Value"
+                            icon="plus"
+                            button-type="Primary" />
+            </abp-column>
+        </abp-row>
+        <abp-row>
+            <abp-column size-md="_6">
+                <input id="searchInput" type="text" class="form-control" placeholder="@L["Search"]">
+            </abp-column>
+            <abp-column size-md="_6">
+                <select id="categorySelect" class="form-control">
+                    <option value="">@L["AllCategories"]</option>
+                    <!-- Aquí debes incluir opciones para cada categoría -->
+                </select>
+            </abp-column>
+        </abp-row>
+    </abp-card-header>
+    <abp-card-body>
+        <div id="ProductsList" class="row row-cols-1 row-cols-md-3 g-4"></div>
+    </abp-card-body>
+</abp-card>

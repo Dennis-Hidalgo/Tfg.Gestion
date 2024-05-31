@@ -1,0 +1,23 @@
+﻿@page
+@using Tfg.Gestion.Localization
+@using Tfg.Gestion.Web.Pages.Products
+@using Microsoft.Extensions.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@model DeleteModalModel
+@inject IStringLocalizer<GestionResource> L
+@{
+    Layout = null;
+}
+
+<abp-modal>
+    <abp-modal-header>
+        <h5 class="modal-title">@L["DeleteProduct"]</h5>
+    </abp-modal-header>
+    <abp-modal-body>
+        <p>@L["AreYouSureToDelete"]</p>
+    </abp-modal-body>
+    <abp-modal-footer>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@L["Cancel"]</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteButton">@L["Delete"]</button>
+    </abp-modal-footer>
+</abp-modal>

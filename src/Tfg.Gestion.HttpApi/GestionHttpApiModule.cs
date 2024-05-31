@@ -1,4 +1,5 @@
 ﻿using Localization.Resources.AbpUi;
+using Microsoft.Extensions.DependencyInjection;
 using Tfg.Gestion.Localization;
 using Volo.Abp.Account;
 using Volo.Abp.FeatureManagement;
@@ -24,7 +25,7 @@ public class GestionHttpApiModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        ConfigureLocalization();
+        context.Services.AddHttpClient();
     }
 
     private void ConfigureLocalization()

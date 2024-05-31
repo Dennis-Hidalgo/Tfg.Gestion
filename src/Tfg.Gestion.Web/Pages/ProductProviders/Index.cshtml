@@ -1,0 +1,61 @@
+﻿@page
+@using Tfg.Gestion.Localization
+@using Tfg.Gestion.Web.Pages.ProductProviders
+@using Microsoft.Extensions.Localization
+@model IndexModel
+@inject IStringLocalizer<GestionResource> L
+
+@section styles
+{
+    <link rel="stylesheet" href="/Pages/ProductProviders/Styles.css" />
+}
+
+@section scripts
+{
+    <abp-script src="/Pages/ProductProviders/Index.js" />
+}
+
+<abp-card>
+    <abp-card-header>
+        <abp-row>
+            <abp-column size-md="_6">
+                <abp-card-title>@L["ProductProviders"]</abp-card-title>
+            </abp-column>
+            <abp-column size-md="_6" class="text-end">
+                <abp-button id="NewProductProviderButton"
+                            text="@L["NewProductProvider"].Value"
+                            icon="plus"
+                            button-type="Primary" />
+            </abp-column>
+        </abp-row>
+        <abp-row>
+            <abp-column size-md="_6">
+                <input id="searchInput" type="text" class="form-control" placeholder="@L["Search"]">
+            </abp-column>
+            <abp-column size-md="_6">
+                <select id="categorySelect" class="form-control">
+                    <option value="">@L["AllCategories"]</option>
+                    <!-- Aquí debes incluir opciones para cada categoría -->
+                </select>
+            </abp-column>
+        </abp-row>
+    </abp-card-header>
+    <abp-card-body>
+        <div class="table-responsive">
+            <table class="table table-striped" id="ProductProvidersList">
+                <thead>
+                    <tr>
+                        <th>@L["Name"]</th>
+                        <th>@L["Address"]</th>
+                        <th>@L["Phone"]</th>
+                        <th>@L["Email"]</th>
+                        <th>@L["Actions"]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Aquí se cargarán dinámicamente las filas de la tabla -->
+                </tbody>
+            </table>
+        </div>
+    </abp-card-body>
+</abp-card>

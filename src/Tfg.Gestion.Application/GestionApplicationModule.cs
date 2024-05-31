@@ -1,4 +1,6 @@
-﻿using Volo.Abp.Account;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Volo.Abp;
+using Volo.Abp.Account;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity;
@@ -6,6 +8,7 @@ using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement;
 using Volo.Abp.SettingManagement;
 using Volo.Abp.TenantManagement;
+using Volo.Abp.Threading;
 
 namespace Tfg.Gestion;
 
@@ -28,4 +31,5 @@ public class GestionApplicationModule : AbpModule
             options.AddMaps<GestionApplicationModule>();
         });
     }
+
 }
