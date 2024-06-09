@@ -6,27 +6,44 @@
     var deleteModal = new abp.ModalManager(abp.appPath + 'Dishes/DeleteModal');
 
     function createDishRow(dish) {
-        var dateInfo = dish.creationTime.split(/[T.]/);
-        var dateDisplay = `${dateInfo[0]}  (${dateInfo[1]})`;
-        console.log(dish)
+        const hasEditPermission = abp.auth.isGranted('Gestion.Dishes.Edit');
+        const hasDeletePermission = abp.auth.isGranted('Gestion.Dishes.Delete');
+
+        let actionButtons = '';
+
+        if (hasEditPermission) {
+            actionButtons += `
+            <button class="btn btn-primary edit-button" data-id="${dish.id}">
+                <i class="fas fa-edit"></i> ${l('Edit')}
+            </button>`;
+        }
+
+        if (hasDeletePermission) {
+            actionButtons += `
+            <button class="btn btn-danger delete-button" data-id="${dish.id}">
+                <i class="fas fa-trash"></i> ${l('Delete')}
+            </button>`;
+        }
+
+        if (!hasEditPermission && !hasDeletePermission) {
+            actionButtons = `<span>${l('NoPermissions')}</span>`;
+        }
+
+        const dateInfo = dish.creationTime.split(/[T.]/);
+        const dateDisplay = `${dateInfo[0]}  (${dateInfo[1]})`;
+
         return `
-            <tr>
-                <td>${dish.name}</td>
-                <td>${dish.description}</td>
-                <td>${dish.price}</td>
-                <td>${dateDisplay}</td>
-                <td>${dish.category}</td>
-                <!-- Agrega aquí cualquier otra columna que desees mostrar -->
-                <td>
-                    <button class="btn btn-primary edit-button" data-id="${dish.id}">
-                        <i class="fas fa-edit"></i> ${l('Edit')}
-                    </button>
-                    <button class="btn btn-danger delete-button" data-id="${dish.id}">
-                        <i class="fas fa-trash"></i> ${l('Delete')}
-                    </button>
-                </td>
-            </tr>`;
+        <tr>
+            <td>${dish.name}</td>
+            <td>${dish.description}</td>
+            <td>${dish.price}</td>
+            <td>${dateDisplay}</td>
+            <td>${dish.category}</td>
+            <!-- Agrega aquí cualquier otra columna que desees mostrar -->
+            <td>${actionButtons}</td>
+        </tr>`;
     }
+
 
     function loadDishes() {
         var dishsTable = $('#DishesList tbody');

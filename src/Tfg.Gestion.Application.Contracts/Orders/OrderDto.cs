@@ -8,9 +8,11 @@ namespace Tfg.Gestion.Orders
     public class OrderDto : AuditedEntityDto<Guid>
     {
         public Guid Id { get; set; }
-        public DateTime OrderDateTime { get; set; }
         public Guid CustomerId { get; set; }
-        public Guid EmployeeId { get; set; }
+        public string CustomerName { get; set; }
         public string OrderStatus { get; set; }
+        public string UserName { get; set; }
+
+        public int PedidoId { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tfg.Gestion.Permissions;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
@@ -21,7 +22,11 @@ namespace Tfg.Gestion.Customers
         public CustomerAppService(IRepository<Customer, Guid> repository)
         : base(repository)
         {
-
+            GetPolicyName = GestionPermissions.Customers.Default;
+            GetListPolicyName = GestionPermissions.Customers.Default;
+            CreatePolicyName = GestionPermissions.Customers.Create;
+            UpdatePolicyName = GestionPermissions.Customers.Edit;
+            DeletePolicyName = GestionPermissions.Customers.Delete;
         }
     }
 }

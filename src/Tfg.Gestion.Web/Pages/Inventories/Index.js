@@ -6,29 +6,46 @@
     var deleteModal = new abp.ModalManager(abp.appPath + 'Inventories/DeleteModal');
 
     function createInventoryRow(inventory) {
-        console.log(inventory);
+        const hasEditPermission = abp.auth.isGranted('Gestion.Inventories.Edit');
+        const hasDeletePermission = abp.auth.isGranted('Gestion.Inventories.Delete');
+
+        let actionButtons = '';
+
+        if (hasEditPermission) {
+            actionButtons += `
+            <button class="btn btn-primary edit-button" data-id="${inventory.id}">
+                <i class="fas fa-edit"></i> ${l('Edit')}
+            </button>`;
+        }
+
+        if (hasDeletePermission) {
+            actionButtons += `
+            <button class="btn btn-danger delete-button" data-id="${inventory.id}">
+                <i class="fas fa-trash"></i> ${l('Delete')}
+            </button>`;
+        }
+
+        if (!hasEditPermission && !hasDeletePermission) {
+            actionButtons = `<span>${l('NoPermissions')}</span>`;
+        }
+
         var dateInfo;
         if (inventory.lastModificationTime == null) {
             dateInfo = inventory.creationTime.split(/[T.]/);
         } else {
             dateInfo = inventory.lastModificationTime.split(/[T.]/);
-        }     
-        var dateDisplay = `${dateInfo[0]}  (${dateInfo[1]})`;
+        }
+        var dateDisplay = `${dateInfo[0]} (${dateInfo[1]})`;
+
         return `
-            <tr>
-                <td>${inventory.rawMaterialName}</td>
-                <td>${inventory.stockQuantity}</td>
-                <td>${dateDisplay}</td>
-                <td>
-                    <button class="btn btn-primary edit-button" data-id="${inventory.id}">
-                        <i class="fas fa-edit"></i> ${l('Edit')}
-                    </button>
-                    <button class="btn btn-danger delete-button" data-id="${inventory.id}">
-                        <i class="fas fa-trash"></i> ${l('Delete')}
-                    </button>
-                </td>
-            </tr>`;
+        <tr>
+            <td>${inventory.rawMaterialName}</td>
+            <td>${inventory.stockQuantity}</td>
+            <td>${dateDisplay}</td>
+            <td>${actionButtons}</td>
+        </tr>`;
     }
+
 
     function loadInventories() {
         var inventoriesTable = $('#InventoriesList tbody');
@@ -84,20 +101,15 @@
     });
 
     createModal.onResult(function () {
-        debugger;
-        var inputValue = $('#Inventory_LastRestockDate');
-        var newDate = Date(inputValue.value).toISOString();
-        inputValue.value = newDate;
-
         loadInventories();
     });
 
     editModal.onResult(function () {
         loadInventories();
     });
-
     $('#NewInventoryButton').click(function (e) {
         e.preventDefault();
+        console.log(createModal);
         createModal.open();
     });
 

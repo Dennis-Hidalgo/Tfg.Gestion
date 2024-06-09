@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tfg.Gestion.Permissions;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
@@ -21,7 +22,11 @@ IOrderDetailAppService //implement the IBookAppService
         public OrderDetailAppService(IRepository<OrderDetail, Guid> repository)
         : base(repository)
         {
-
+            GetPolicyName = GestionPermissions.OrderDetails.Default;
+            GetListPolicyName = GestionPermissions.OrderDetails.Default;
+            CreatePolicyName = GestionPermissions.OrderDetails.Create;
+            UpdatePolicyName = GestionPermissions.OrderDetails.Edit;
+            DeletePolicyName = GestionPermissions.OrderDetails.Delete;
         }
     }
 }

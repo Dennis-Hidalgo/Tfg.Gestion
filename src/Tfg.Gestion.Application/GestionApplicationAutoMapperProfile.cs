@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Tfg.Gestion.Customers;
 using Tfg.Gestion.Dishes;
-using Tfg.Gestion.Employess;
 using Tfg.Gestion.Inventories;
 using Tfg.Gestion.Invoices;
 using Tfg.Gestion.OrderDetails;
@@ -46,11 +45,7 @@ public class GestionApplicationAutoMapperProfile : Profile
         CreateMap<Order, OrderDto>();
         CreateMap<CreateUpdateOrderDto, Order>();
         CreateMap<OrderDto, CreateUpdateOrderDto>();
-
-        // Employee mappings
-        CreateMap<Employee, EmployeeDto>();
-        CreateMap<CreateUpdateEmployeeDto, Employee>();
-        CreateMap<EmployeeDto, CreateUpdateEmployeeDto>();
+        CreateMap<Customer, CustomerLookupDto>();
 
         // Customer mappings
         CreateMap<Customer, CustomerDto>();

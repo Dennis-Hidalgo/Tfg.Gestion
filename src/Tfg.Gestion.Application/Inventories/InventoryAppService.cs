@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Text;
 using System.Threading.Tasks;
+using Tfg.Gestion.Permissions;
 using Tfg.Gestion.RawMaterials;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
@@ -26,6 +27,11 @@ IInventoryAppService //implement the IInventoryAppService
         : base(repository)
         {
             _rawMaterialRepository = rawMaterialRepository;
+            GetPolicyName = GestionPermissions.Inventories.Default;
+            GetListPolicyName = GestionPermissions.Inventories.Default;
+            CreatePolicyName = GestionPermissions.Inventories.Create;
+            UpdatePolicyName = GestionPermissions.Inventories.Edit;
+            DeletePolicyName = GestionPermissions.Inventories.Delete;
         }
 
         public override async Task<InventoryDto> GetAsync(Guid id)
@@ -99,7 +105,7 @@ IInventoryAppService //implement the IInventoryAppService
         {
             if (sorting.IsNullOrEmpty())
             {
-                return $"inventory.{nameof(Inventory.RawMaterialId)}";
+                return $"inventory.{nameof(Inventory.Id)}";
             }
 
             if (sorting.Contains("rawMaterialName", StringComparison.OrdinalIgnoreCase))

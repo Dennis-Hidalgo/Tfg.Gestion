@@ -1,25 +1,25 @@
 .welcome-section {
-    background-color: #0f083c; /* Color de fondo verde */
-    color: #fff; /* Color de texto blanco */
-    padding: 5rem 0;
+    background-color: #0f083c; /* Color de fondo */
+    color: #fff; /* Color de texto */
+    padding: 3rem 0; /* Reducir el padding para evitar scroll */
     text-align: center;
 }
 
     .welcome-section h1 {
-        font-size: 2.5rem;
-        margin-bottom: 2rem;
+        font-size: 2rem; /* Reducir el tamaño de la fuente para mayor compacidad */
+        margin-bottom: 1.5rem; /* Reducir el margen inferior */
     }
 
     .welcome-section p {
-        font-size: 1.25rem;
-        margin-bottom: 2rem;
+        font-size: 1rem; /* Reducir el tamaño de la fuente para mayor compacidad */
+        margin-bottom: 1.5rem; /* Reducir el margen inferior */
     }
 
 .cta-button {
-    background-color: #02c985; /* Color de fondo azul oscuro */
-    color: #fff; /* Color de texto blanco */
-    padding: 1rem 2rem;
-    font-size: 1.25rem;
+    background-color: #02c985; /* Color de fondo del botón */
+    color: #fff; /* Color de texto del botón */
+    padding: 0.75rem 1.5rem; /* Reducir el padding para evitar scroll */
+    font-size: 1rem; /* Reducir el tamaño de la fuente para mayor compacidad */
     text-decoration: none;
     border-radius: 5px;
 }
@@ -27,4 +27,39 @@
     .cta-button:hover {
         background-color: #fff; /* Cambio de color de fondo al pasar el ratón */
         color: #001f46; /* Cambio de color de texto al pasar el ratón */
+    }
+
+.action-grid {
+    display: grid; /* Usar grid para la disposición */
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas iguales */
+    gap: 20px; /* Espacio entre los elementos */
+    justify-items: center; /* Centrar horizontalmente los elementos */
+    margin-top: 2rem; /* Reducir el margen superior para evitar scroll */
+}
+
+.action-card {
+    background-color: #ffffff;
+    color: #001f46;
+    padding: 1rem; /* Reducir el padding para mayor compacidad */
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.2s;
+    cursor: pointer;
+    margin: 0.5rem; /* Reducir margen para evitar scroll */
+    width: 100%; /* Ajustar el ancho para que ocupe toda la columna */
+    max-width: 300px; /* Establecer un ancho máximo */
+}
+
+    .action-card:hover {
+        transform: scale(1.05);
+    }
+
+    .action-card h2 {
+        font-size: 1.25rem; /* Reducir el tamaño de la fuente para mayor compacidad */
+        margin-bottom: 0.75rem; /* Reducir el margen inferior */
+    }
+
+    .action-card p {
+        font-size: 0.875rem; /* Reducir el tamaño de la fuente para mayor compacidad */
+        margin-bottom: 1rem; /* Reducir el margen inferior */
     }

@@ -51,16 +51,11 @@ namespace Tfg.Gestion.Web.Pages.Inventories
             [HiddenInput]
             public Guid Id { get; set; }
 
-            [SelectItems(nameof(RawMaterials))]
-            [DisplayName("Product Provider")]
+            [HiddenInput]
             public Guid RawMaterialId { get; set; }
 
             [Required]
-            [StringLength(128)]
             public int StockQuantity { get; set; } = 0;
-
-            [Required]
-            public DateTime LastRestockDate { get; set; } = DateTime.Now;
 
         }
     }

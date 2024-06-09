@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tfg.Gestion.Permissions;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
@@ -21,7 +22,11 @@ IDishAppService //implement the IBookAppService
         public DishAppService(IRepository<Dish, Guid> repository)
         : base(repository)
         {
-
+            GetPolicyName = GestionPermissions.Dishes.Default;
+            GetListPolicyName = GestionPermissions.Dishes.Default;
+            CreatePolicyName = GestionPermissions.Dishes.Create;
+            UpdatePolicyName = GestionPermissions.Dishes.Edit;
+            DeletePolicyName = GestionPermissions.Dishes.Delete;
         }
     }
 }

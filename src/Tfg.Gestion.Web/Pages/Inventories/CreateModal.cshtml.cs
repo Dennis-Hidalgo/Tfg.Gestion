@@ -46,10 +46,6 @@ namespace Tfg.Gestion.Web.Pages.Inventories
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var datos = await _inventoryAppService.CreateAsync(
-            ObjectMapper.Map<CreateInventoryViewModel, CreateUpdateInventoryDto>(Inventory)
-            );
-            string hola = "hola";
             await _inventoryAppService.CreateAsync(
             ObjectMapper.Map<CreateInventoryViewModel, CreateUpdateInventoryDto>(Inventory)
             );
@@ -59,11 +55,10 @@ namespace Tfg.Gestion.Web.Pages.Inventories
         public class CreateInventoryViewModel
         {
             [SelectItems(nameof(RawMaterials))]
-            [DisplayName("Product Provider")]
+            [DisplayName("Raw Material")]
             public Guid RawMaterialId { get; set; }
 
             [Required]
-            [StringLength(128)]
             public int StockQuantity { get; set; }
 
         }

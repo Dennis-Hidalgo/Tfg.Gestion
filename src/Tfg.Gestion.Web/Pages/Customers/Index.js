@@ -6,24 +6,44 @@
     var deleteModal = new abp.ModalManager(abp.appPath + 'Customers/DeleteModal');
 
     function createCustomerRow(customer) {
+        const hasEditPermission = abp.auth.isGranted('Gestion.Customers.Edit');
+        const hasDeletePermission = abp.auth.isGranted('Gestion.Customers.Delete');
+        console.log(hasEditPermission);
+        console.log(hasDeletePermission);
+
+        let actionButtons = '';
+
+        if (hasEditPermission) {
+            actionButtons += `
+            <button class="btn btn-primary edit-button" data-id="${customer.id}">
+                <i class="fas fa-edit"></i> ${l('Edit')}
+            </button>`;
+        }
+
+        if (hasDeletePermission) {
+            actionButtons += `
+            <button class="btn btn-danger delete-button" data-id="${customer.id}">
+                <i class="fas fa-trash"></i> ${l('Delete')}
+            </button>`;
+        }
+
+        if (!hasEditPermission && !hasDeletePermission) {
+            actionButtons = `<span>${l('NoPermissions')}</span>`;
+        }
+
         return `
-            <tr>
-                <td>${customer.firstName}</td>
-                <td>${customer.lastName}</td>
-                <td>${customer.address}</td>
-                <td>${customer.phone}</td>
-                <td>${customer.email}</td>
-                <!-- Agrega aquí cualquier otra columna que desees mostrar -->
-                <td>
-                    <button class="btn btn-primary edit-button" data-id="${customer.id}">
-                        <i class="fas fa-edit"></i> ${l('Edit')}
-                    </button>
-                    <button class="btn btn-danger delete-button" data-id="${customer.id}">
-                        <i class="fas fa-trash"></i> ${l('Delete')}
-                    </button>
-                </td>
-            </tr>`;
+        <tr>
+            <td>${customer.firstName}</td>
+            <td>${customer.lastName}</td>
+            <td>${customer.address}</td>
+            <td>${customer.phone}</td>
+            <td>${customer.email}</td>
+            <!-- Agrega aquí cualquier otra columna que desees mostrar -->
+            <td>${actionButtons}</td>
+        </tr>`;
     }
+
+
 
     function loadCustomers() {
         var customersTable = $('#CustomersList tbody');

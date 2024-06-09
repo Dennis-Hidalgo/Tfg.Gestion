@@ -1,0 +1,48 @@
+﻿@page
+@using Tfg.Gestion.Localization
+@using Tfg.Gestion.Web.Pages.Actions
+@using Microsoft.Extensions.Localization
+@model CreateOrderModel
+@inject IStringLocalizer<GestionResource> L
+
+@section scripts
+    {
+    <abp-script src="/Pages/Actions/Index.js" />
+}
+
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-md-6">
+            <div class="input-group">
+                <select id="customerSelect" class="form-select">
+                    <option value="">@L["SelectCustomer"]</option>
+                    <!-- Aquí se cargarán dinámicamente las opciones del select -->
+                </select>
+                <button id="newCustomerButton" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#createCustomerModal">
+                    <i class="fas fa-plus"></i> @L["NewCustomer"]
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cards de los platos -->
+    <div class="row mt-3" id="dishesContainer">
+        <!-- Aquí se cargarán dinámicamente las cards de los platos -->
+    </div>
+</div>
+
+<!-- Modal para crear nuevo cliente -->
+<div class="modal fade" id="createCustomerModal" tabindex="-1" aria-labelledby="createCustomerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createCustomerModalLabel">@L["NewCustomer"]</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Aquí se cargará el contenido del formulario de creación de nuevo cliente -->
+            </div>
+        </div>
+    </div>
+</div>
+

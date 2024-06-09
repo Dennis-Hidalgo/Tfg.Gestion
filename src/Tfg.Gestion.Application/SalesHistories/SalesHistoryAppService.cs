@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tfg.Gestion.Permissions;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
@@ -21,7 +22,11 @@ ISalesHistoryAppService //implement the IBookAppService
         public SalesHistoryAppService(IRepository<SalesHistory, Guid> repository)
         : base(repository)
         {
-
+            GetPolicyName = GestionPermissions.SalesHistories.Default;
+            GetListPolicyName = GestionPermissions.SalesHistories.Default;
+            CreatePolicyName = GestionPermissions.SalesHistories.Create;
+            UpdatePolicyName = GestionPermissions.SalesHistories.Edit;
+            DeletePolicyName = GestionPermissions.SalesHistories.Delete;
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Tfg.Gestion.Customers;
 using Tfg.Gestion.Dishes;
-using Tfg.Gestion.Employess;
 using Tfg.Gestion.Inventories;
 using Tfg.Gestion.Invoices;
 using Tfg.Gestion.OrderDetails;
@@ -57,7 +56,6 @@ public class GestionDbContext :
     public DbSet<RawMaterial> RawMaterials { get; set; }
     public DbSet<Dish> Dishes { get; set; }
     public DbSet<Order> Orders { get; set; }
-    public DbSet<Employee> Employees { get; set; }
     public DbSet<Customer> Customers { get; set; }
     public DbSet<OrderDetail> OrderDetails { get; set; }
     public DbSet<Inventory> Inventories { get; set; }
@@ -140,13 +138,6 @@ public class GestionDbContext :
             b.ToTable("Orders");
             b.ConfigureByConvention();
             b.HasOne(o => o.Customer).WithMany().HasForeignKey(o => o.CustomerId);
-            b.HasOne(o => o.Employee).WithMany().HasForeignKey(o => o.EmployeeId);
-        });
-
-        builder.Entity<Employee>(b =>
-        {
-            b.ToTable("Employees"); // Mapea a la tabla de usuarios de ABP
-            b.ConfigureByConvention(); // Método de ABP para configurar la entidad por convención
         });
 
         builder.Entity<Customer>(b =>

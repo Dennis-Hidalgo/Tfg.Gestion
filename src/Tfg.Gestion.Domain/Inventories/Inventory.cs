@@ -13,6 +13,5 @@ namespace Tfg.Gestion.Inventories
         public Guid RawMaterialId { get; set; }
         public RawMaterial RawMaterial { get; set; }
         public int StockQuantity { get; set; }
-        public DateTime LastRestockDate { get; set; }
     }
 }

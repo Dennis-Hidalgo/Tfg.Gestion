@@ -1,37 +1,31 @@
 ﻿@page
 @using Tfg.Gestion.Localization
-@using Tfg.Gestion.Web.Pages.Dishes
-@using Microsoft.AspNetCore.Authorization
+@using Tfg.Gestion.Web.Pages.Orders
 @using Microsoft.Extensions.Localization
-@using Tfg.Gestion.Permissions
 @model IndexModel
 @inject IStringLocalizer<GestionResource> L
-@inject IAuthorizationService AuthorizationService
 
 @section styles
 {
-    <link rel="stylesheet" href="/Pages/Dishes/Styles.css" />
+    <link rel="stylesheet" href="/Pages/Orders/Styles.css" />
 }
 
 @section scripts
 {
-    <abp-script src="/Pages/Dishes/Index.js" />
+    <abp-script src="/Pages/Orders/Index.js" />
 }
 
 <abp-card>
     <abp-card-header>
         <abp-row>
             <abp-column size-md="_6">
-                <abp-card-title>@L["Dishes"]</abp-card-title>
+                <abp-card-title>@L["Orders"]</abp-card-title>
             </abp-column>
             <abp-column size-md="_6" class="text-end">
-                @if (await AuthorizationService.IsGrantedAsync(GestionPermissions.Dishes.Create))
-                {
-                <abp-button id="NewDishButton"
-                            text="@L["NewDish"].Value"
+                <abp-button id="NewOrderButton"
+                            text="@L["NewOrder"].Value"
                             icon="plus"
                             button-type="Primary" />
-                }
             </abp-column>
         </abp-row>
         <abp-row>
@@ -41,22 +35,21 @@
             <abp-column size-md="_6">
                 <select id="categorySelect" class="form-control">
                     <option value="">@L["AllCategories"]</option>
-                    <!-- Aquí debes incluir opciones para cada categoría -->
+                    <!-- Aquí puedes incluir opciones para cada categoría si es aplicable -->
                 </select>
             </abp-column>
         </abp-row>
     </abp-card-header>
     <abp-card-body>
         <div class="table-responsive">
-            <table class="table table-striped" id="DishesList">
+            <table class="table table-striped" id="OrdersList">
                 <thead>
                     <tr>
-                        <th>@L["Name"]</th>
-                        <th>@L["Description"]</th>
-                        <th>@L["Price"]</th>
-                        <th>@L["CreationTime"]</th>
-                        <th>@L["Category"]</th>
-                        <th>@L["Actions"]</th>
+                        <th>@L["pedidoId"]</th>
+                        <th>@L["customerName"]</th>
+                        <th>@L["userName"]</th>
+                        <th>@L["orderStatus"]</th>
+                        <th>@L["dateDisplay"]</th>
                     </tr>
                 </thead>
                 <tbody>

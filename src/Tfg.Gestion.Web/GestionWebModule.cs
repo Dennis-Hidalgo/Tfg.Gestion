@@ -39,6 +39,8 @@ using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.UI;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Tfg.Gestion.Permissions;
 
 namespace Tfg.Gestion.Web;
 
@@ -111,6 +113,20 @@ public class GestionWebModule : AbpModule
         ConfigureNavigationServices();
         ConfigureAutoApiControllers();
         ConfigureSwaggerServices(context.Services);
+        Configure<RazorPagesOptions>(options =>
+        {
+            options.Conventions.AuthorizePage("/Customers/Index", GestionPermissions.Customers.Default);
+            options.Conventions.AuthorizePage("/Customers/CreateModal", GestionPermissions.Customers.Create);
+            options.Conventions.AuthorizePage("/Customers/EditModal", GestionPermissions.Customers.Edit);
+
+            options.Conventions.AuthorizePage("/Dishes/Index", GestionPermissions.Dishes.Default);
+            options.Conventions.AuthorizePage("/Dishes/CreateModal", GestionPermissions.Dishes.Create);
+            options.Conventions.AuthorizePage("/Dishes/EditModal", GestionPermissions.Dishes.Edit);
+
+            options.Conventions.AuthorizePage("/Inventories/Index", GestionPermissions.Inventories.Default);
+            options.Conventions.AuthorizePage("/Inventories/CreateModal", GestionPermissions.Inventories.Create);
+            options.Conventions.AuthorizePage("/Inventories/EditModal", GestionPermissions.Inventories.Edit);
+        });
     }
 
     private void ConfigureAuthentication(ServiceConfigurationContext context)

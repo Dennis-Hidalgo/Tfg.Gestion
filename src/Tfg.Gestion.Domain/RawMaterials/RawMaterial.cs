@@ -13,7 +13,6 @@ namespace Tfg.Gestion.RawMaterials
         public string Name { get; set; }
         public string Description { get; set; }
         public float PricePerUnit { get; set; }
-        public int StockQuantity { get; set; }
         public Guid ProductProviderId { get; set; }
         public ProductProvider ProductProvider { get; set; }
     }

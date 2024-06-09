@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tfg.Gestion.Permissions;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
@@ -21,7 +22,11 @@ IRawMaterialDetailAppService //implement the IBookAppService
         public RawMaterialDetailAppService(IRepository<RawMaterialDetail, Guid> repository)
         : base(repository)
         {
-
+            GetPolicyName = GestionPermissions.RawMaterialDetails.Default;
+            GetListPolicyName = GestionPermissions.RawMaterialDetails.Default;
+            CreatePolicyName = GestionPermissions.RawMaterialDetails.Create;
+            UpdatePolicyName = GestionPermissions.RawMaterialDetails.Edit;
+            DeletePolicyName = GestionPermissions.RawMaterialDetails.Delete;
         }
     }
 }

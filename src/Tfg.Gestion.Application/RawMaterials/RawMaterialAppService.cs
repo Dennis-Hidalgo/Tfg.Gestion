@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Text;
 using System.Threading.Tasks;
+using Tfg.Gestion.Permissions;
 using Tfg.Gestion.ProductProviders;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
@@ -25,6 +26,11 @@ IRawMaterialAppService //implement the IRawMaterialAppService
         public RawMaterialAppService(IRepository<RawMaterial, Guid> repository, IRepository<ProductProvider, Guid> productProviderRepository)
         : base(repository)
         {
+            GetPolicyName = GestionPermissions.RawMaterials.Default;
+            GetListPolicyName = GestionPermissions.RawMaterials.Default;
+            CreatePolicyName = GestionPermissions.RawMaterials.Create;
+            UpdatePolicyName = GestionPermissions.RawMaterials.Edit;
+            DeletePolicyName = GestionPermissions.RawMaterials.Delete;
             _productProviderRepository = productProviderRepository;
         }
 

@@ -47,15 +47,15 @@ public class GestionMenuContributor : IMenuContributor
         administration.SetSubItemOrder(IdentityMenuNames.GroupName, 2);
         administration.SetSubItemOrder(SettingManagementMenuNames.GroupName, 3);
 
-        context.Menu.GetAdministration().AddItem(
-     new ApplicationMenuItem(
-         "CustomIdentity.Users",
-         l["Users"],
-         url: "/custom-identity/users",
-         icon: "fas fa-users",
-         requiredPermissionName: IdentityPermissions.Users.Default
-     )
- );
+ //       context.Menu.GetAdministration().AddItem(
+ //    new ApplicationMenuItem(
+ //        "CustomIdentity.Users",
+ //        l["Users"],
+ //        url: "/custom-identity/users",
+ //        icon: "fas fa-users",
+ //        requiredPermissionName: IdentityPermissions.Users.Default
+ //    )
+ //);
 
         context.Menu.AddItem(
     new ApplicationMenuItem(
@@ -70,21 +70,9 @@ public class GestionMenuContributor : IMenuContributor
         )
     ).AddItem(
         new ApplicationMenuItem(
-            "TfgGestion.RawMaterials",
-            l["Menu:RawMaterials"],
-            url: "/RawMaterials"
-        )
-    ).AddItem(
-        new ApplicationMenuItem(
             "TfgGestion.ProductProviders",
             l["Menu:ProductProviders"],
             url: "/ProductProviders"
-        )
-    ).AddItem(
-        new ApplicationMenuItem(
-            "TfgGestion.Invoices",
-            l["Menu:Invoices"],
-            url: "/Invoices"
         )
     ).AddItem(
         new ApplicationMenuItem(
@@ -94,15 +82,27 @@ public class GestionMenuContributor : IMenuContributor
         )
     ).AddItem(
         new ApplicationMenuItem(
-            "TfgGestion.Dishes",
-            l["Menu:Dishes"],
-            url: "/Dishes"
+            "TfgGestion.RawMaterials",
+            l["Menu:RawMaterials"],
+            url: "/RawMaterials"
         )
     ).AddItem(
         new ApplicationMenuItem(
             "TfgGestion.Inventories",
             l["Menu:Inventories"],
             url: "/Inventories"
+        )
+    ).AddItem(
+        new ApplicationMenuItem(
+            "TfgGestion.Dishes",
+            l["Menu:Dishes"],
+            url: "/Dishes"
+        )
+    ).AddItem(
+        new ApplicationMenuItem(
+            "TfgGestion.Orders",
+            l["Menu:Orders"],
+            url: "/Orders"
         )
     )
 );

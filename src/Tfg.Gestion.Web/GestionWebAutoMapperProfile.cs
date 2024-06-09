@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Tfg.Gestion.Inventories;
+using Tfg.Gestion.Orders;
 using Tfg.Gestion.RawMaterials;
 
 namespace Tfg.Gestion.Web;
@@ -16,5 +17,9 @@ public class GestionWebAutoMapperProfile : Profile
         CreateMap<Pages.Inventories.CreateModalModel.CreateInventoryViewModel, CreateUpdateInventoryDto>();
         CreateMap<InventoryDto, Pages.Inventories.EditModalModel.EditInventoryViewModel>();
         CreateMap<Pages.Inventories.EditModalModel.EditInventoryViewModel, CreateUpdateInventoryDto>();
+
+        CreateMap<Pages.Orders.CreateModalModel.CreateOrderViewModel, CreateUpdateOrderDto>();
+        CreateMap<OrderDto, Pages.Orders.EditModalModel.EditOrderViewModel>();
+        CreateMap<Pages.Orders.EditModalModel.EditOrderViewModel, CreateUpdateOrderDto>();
     }
 }
